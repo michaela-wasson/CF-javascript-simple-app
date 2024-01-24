@@ -1,0 +1,15 @@
+body{
+    background-color: gray;
+    color: white;
+}
+
+.footerimg{
+    position:fixed;
+    bottom:0px;
+    left:50%;
+}
+
+h1{
+    text-align: center;
+}
+    
