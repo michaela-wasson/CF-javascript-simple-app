@@ -1,7 +1,7 @@
 //declares an IIFE to be used as data
 
 const pokemonRepository= (function () 
-{
+{ let pokemonList =
     [
     {
     name:'Bulbasaur', 
