@@ -1,6 +1,8 @@
-//declares an array of pokemon to be used as data
+//declares an IIFE to be used as data
 
-let pokemonList=[
+const pokemonRepository= (function () 
+{
+    [
     {
     name:'Bulbasaur', 
     height: 0.7,
@@ -35,22 +37,34 @@ let pokemonList=[
     height: 1, 
     types: ['normal']
     }
-];
+    ]; 
 
-//for loop that iterates over each item in pokemon array and writes name
-
-let pokemonNameHeight = function( array){
-    for(let i=0; i < array.length; i ++ ){
-        document.write(' ')
-        document.write(`<br> ${array[i].name} height: ${array[i].height}.` )
-        
+    function add(pokemon) {
+        pokemonList.push (pokemon);
     }
+
+    function getAll(){
+        return pokemonList;
+    }
+
+    return {
+        add: add, 
+        getAll: getAll
+    };
+
+    })();
+
+
+//forEach loop that iterates over each item in pokemon array and writes name and height
+
+let pokemonNameHeight = function(array) {
+    array.forEach((object) => {
+        let sentence = `<br> I am ${object.name} and I am ${object.height} meters tall.`;
+        document.write(sentence);
+    })
 }
 
-pokemonNameHeight(pokemonList);
-
-
-document.write('<br>')
+pokemonNameHeight(pokemonRepository.getAll());
 
 
 
@@ -67,15 +81,4 @@ let biggestPokemon = function (array){
     }
 }
 
-biggestPokemon(pokemonList);
-
-
-
-
-
-
-
-
-
-
-
+biggestPokemon(pokemonRepository.getAll());
