@@ -55,12 +55,21 @@ const pokemonRepository= (function ()
     })();
 
 
-//forEach loop that iterates over each item in pokemon array and writes name and height
+
+
+
+// forEach loop that iterates over the list 
 
 let pokemonNameHeight = function(array) {
     array.forEach((object) => {
-        let sentence = `<br> I am ${object.name} and I am ${object.height} meters tall.`;
-        document.write(sentence);
+        let htmlElement = document.querySelector('.pokemon-list');
+        //let sentence = `<br> I am ${object.name} and I am ${object.height} meters tall.`;
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerText=`I am ${object.name} and I am ${object.height} meters tall.`
+        button.classList.add('button');
+        listItem.appendChild(button);
+        htmlElement.appendChild(li);
     })
 }
 
@@ -76,7 +85,7 @@ let biggestPokemon = function (array){
             document.write(`<br> ${array[i].name + array[i].height}. Wow, that's big!\n`);
 
         } else {
-            document.write(`<br> ${array[i].name} not the tallest`);
+            document.write(`<br> ${array[i].name} is not the tallest`);
         }
     }
 }
