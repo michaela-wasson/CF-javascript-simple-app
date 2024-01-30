@@ -47,9 +47,21 @@ const pokemonRepository= (function ()
         return pokemonList;
     }
 
+    function addListItem(pokemon){
+        let htmlElement = document.querySelector('.pokemon-list');
+        //let sentence = `<br> I am ${object.name} and I am ${object.height} meters tall.`;
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerText=`I am ${pokemon.name} and I am ${pokemon.height} meters tall.`
+        button.classList.add('button');
+        listItem.appendChild(button);
+        htmlElement.appendChild(li);
+    }
+
     return {
         add: add, 
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem
     };
 
     })();
@@ -62,14 +74,7 @@ const pokemonRepository= (function ()
 
 let pokemonNameHeight = function(array) {
     array.forEach((object) => {
-        let htmlElement = document.querySelector('.pokemon-list');
-        //let sentence = `<br> I am ${object.name} and I am ${object.height} meters tall.`;
-        let listItem = document.createElement('li');
-        let button = document.createElement('button');
-        button.innerText=`I am ${object.name} and I am ${object.height} meters tall.`
-        button.classList.add('button');
-        listItem.appendChild(button);
-        htmlElement.appendChild(li);
+        pokemonRepository.addListItem();
     })
 }
 
