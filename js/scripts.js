@@ -55,7 +55,7 @@ const pokemonRepository= (function ()
         button.innerText=`I am ${pokemon.name} and I am ${pokemon.height} meters tall.`
         button.classList.add('button');
         listItem.appendChild(button);
-        htmlElement.appendChild(li);
+        htmlElement.appendChild(listItem);
     }
 
     return {
