@@ -50,7 +50,6 @@ const pokemonRepository= (function ()
 
     function addListItem(pokemon){
         let htmlElement = document.querySelector('.pokemon-list');
-        //let sentence = `<br> I am ${object.name} and I am ${object.height} meters tall.`;
         let listItem = document.createElement('li');
         let button = document.createElement('button');
         button.innerText=`I am ${pokemon.name} and I am ${pokemon.height} meters tall.`
@@ -74,8 +73,8 @@ const pokemonRepository= (function ()
 // forEach loop that iterates over the list 
 
 let pokemonNameHeight = function(array) {
-    array.forEach((object) => {
-        pokemonRepository.addListItem();
+    array.forEach((pokemon) => {
+        pokemonRepository.addListItem(pokemon);
     })
 }
 
