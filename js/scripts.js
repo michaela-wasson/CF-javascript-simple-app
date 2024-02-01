@@ -48,20 +48,29 @@ const pokemonRepository= (function ()
         return pokemonList;
     }
 
+    //creates buttons to display pokemon data
+
     function addListItem(pokemon){
         let htmlElement = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
-        let button = document.createElement('button');
+        let button = document.createElement('button').addEventListener('click', showDetails);
         button.innerText=`I am ${pokemon.name} and I am ${pokemon.height} meters tall.`
         button.classList.add('button');
         listItem.appendChild(button);
         htmlElement.appendChild(listItem);
+        
+    }
+
+    function showDetails(pokemon){
+        console.log(pokemon.name);
+
     }
 
     return {
         add: add, 
         getAll: getAll,
-        addListItem: addListItem
+        addListItem: addListItem,
+        showDetails: showDetails
     };
 
     })();
