@@ -53,8 +53,10 @@ const pokemonRepository= (function ()
     function addListItem(pokemon){
         let htmlElement = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
-        let button = document.createElement('button').addEventListener('click', showDetails);
-        button.innerText=`I am ${pokemon.name} and I am ${pokemon.height} meters tall.`
+        let button = document.createElement('button')
+        button.addEventListener('click', function () {
+            button.innerText=`I am ${pokemon.name} and I am ${pokemon.height} meters tall.`
+        });
         button.classList.add('button');
         listItem.appendChild(button);
         htmlElement.appendChild(listItem);
@@ -62,7 +64,8 @@ const pokemonRepository= (function ()
     }
 
     function showDetails(pokemon){
-        console.log(pokemon.name);
+        console.log(pokemon)
+ 
 
     }
 
