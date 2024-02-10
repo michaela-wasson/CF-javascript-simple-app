@@ -108,3 +108,4 @@ let biggestPokemon = function (array){
 }
 
 biggestPokemon(pokemonRepository.getAll());
+
