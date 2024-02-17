@@ -1,8 +1,8 @@
 //declares an IIFE to be used as data
 
 const pokemonRepository= (function () 
-{ let pokemonList =
-    [ ]; 
+{ let pokemonList = [];
+    
 
     let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
     console.log('top of the File', apiURL);
@@ -84,7 +84,7 @@ const pokemonRepository= (function ()
     })();
 
 
-    (function() {
+  /* (function() {*/
   
       let modalContainer = document.querySelector('#modal-container');
       
@@ -121,7 +121,11 @@ const pokemonRepository= (function ()
           hideModal();  
         }
       });
-      
+
+      document.querySelector('.button').addEventListener('click', () => {
+        showModal('Modal title', 'This is the modal content!');
+      })
+
       modalContainer.addEventListener('click', (e) => {
         // Since this is also triggered when clicking INSIDE the modal
         // We only want to close if the user clicks directly on the overlay
@@ -131,16 +135,16 @@ const pokemonRepository= (function ()
         }
       });
     
-      document.querySelector('#show-modal').addEventListener('click', () => {
-        showModal('Modal title', 'This is the modal content!');
-      });
-    
+
+
+
+/*
       // THE RETURN STATEMENT HERE
       return {
         showModal: showModal, 
         hideModal: hideModal
       }
-    })();
+    })();*/
 
 
 
@@ -150,7 +154,6 @@ pokemonRepository.loadList().then(function() {
     // Now the data is loaded!
     pokemonRepository.getAll().forEach(function(pokemon){
         pokemonRepository.addListItem(pokemon);
-        showModal(pokemon.name, pokemon.height);
         });
       });
 
