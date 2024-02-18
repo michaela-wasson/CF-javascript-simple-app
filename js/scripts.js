@@ -84,7 +84,7 @@ const pokemonRepository= (function ()
     })();
 
 
-  /* (function() {*/
+const Modal = (function() {
   
       let modalContainer = document.querySelector('#modal-container');
       
@@ -110,41 +110,35 @@ const pokemonRepository= (function ()
         modalContainer.appendChild(modal);
         
         modalContainer.classList.add('is-visible');
+
+        modalContainer.addEventListener('click', (e) => {
+          let target = e.target;
+          if (target === modalContainer) {
+            hideModal();
+          }
+        });
+
+        document.querySelector('#show-modal').addEventListener('click', () => {
+          showModal('', '');
+        })
+
+        window.addEventListener('keydown', (e) => {
+          let modalContainer = document.querySelector('#modal-container');
+          if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideModal();  
+          }
+        });
       }
     
       function hideModal() {
         modalContainer.classList.remove('is-visible');
       }
-    
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-          hideModal();  
-        }
-      });
 
-      document.querySelector('.button').addEventListener('click', () => {
-        showModal('Modal title', 'This is the modal content!');
-      })
-
-      modalContainer.addEventListener('click', (e) => {
-        // Since this is also triggered when clicking INSIDE the modal
-        // We only want to close if the user clicks directly on the overlay
-        let target = e.target;
-        if (target === modalContainer) {
-          hideModal();
-        }
-      });
-    
-
-
-
-/*
-      // THE RETURN STATEMENT HERE
       return {
         showModal: showModal, 
         hideModal: hideModal
       }
-    })();*/
+    })();
 
 
 
@@ -154,10 +148,11 @@ pokemonRepository.loadList().then(function() {
     // Now the data is loaded!
     pokemonRepository.getAll().forEach(function(pokemon){
         pokemonRepository.addListItem(pokemon);
+        Modal.showModal(pokemon.name, pokemon.imageUrl);
         });
       });
 
-    
+  
 // forEach loop that iterates over the list 
 
 let pokemonNameHeight = function(array) {

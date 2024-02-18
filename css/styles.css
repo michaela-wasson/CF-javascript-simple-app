@@ -28,7 +28,7 @@ p {
     text-align: center;
 }
 
- #showmodal, .button {
+ #show-modal{
     border: none;
     display: inline-block;
     font-family: inherit;
