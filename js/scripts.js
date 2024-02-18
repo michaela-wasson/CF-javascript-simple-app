@@ -84,12 +84,14 @@ const pokemonRepository= (function ()
     })();
 
 
-const Modal = (function() {
+//declares an IFFE to make a modal to display the data 
+
+const modal = (function() {
   
       let modalContainer = document.querySelector('#modal-container');
       
       function showModal(title, text) {
-        modalContainer.innerHTML = '';
+        modalContainer.innerHTML = 'Show Modal';
         let modal = document.createElement('div');
         modal.classList.add('modal');
     
@@ -118,8 +120,8 @@ const Modal = (function() {
           }
         });
 
-        document.querySelector('#show-modal').addEventListener('click', () => {
-          showModal('', '');
+        document.querySelector('#modal-container').addEventListener('click', () => {
+          showModal(title, text);
         })
 
         window.addEventListener('keydown', (e) => {
@@ -133,11 +135,11 @@ const Modal = (function() {
       function hideModal() {
         modalContainer.classList.remove('is-visible');
       }
+    return{
+      showModal: showModal, 
+      hideModal: hideModal
+    }
 
-      return {
-        showModal: showModal, 
-        hideModal: hideModal
-      }
     })();
 
 
@@ -148,7 +150,8 @@ pokemonRepository.loadList().then(function() {
     // Now the data is loaded!
     pokemonRepository.getAll().forEach(function(pokemon){
         pokemonRepository.addListItem(pokemon);
-        Modal.showModal(pokemon.name, pokemon.imageUrl);
+        modal.then(function(title, text){
+        modal.showModal(pokemon.name, pokemon.height);
         });
       });
 
