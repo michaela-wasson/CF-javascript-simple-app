@@ -32,7 +32,6 @@ const pokemonRepository = (function () {
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', () => hideModal());
 
-    // showDetails(pokemon)
 
     let titleElement = document.createElement('h1');
     titleElement.innerText = pokemon.name;
@@ -125,8 +124,6 @@ const pokemonRepository = (function () {
     getAll: getAll,
     loadList: loadList,
     addListItem: addListItem,
-    showModal: showModal,
-    hideModal: hideModal
   };
 
 })();
@@ -142,6 +139,6 @@ pokemonRepository.loadList().then(function () {
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
-    //pokemonRepository.showModal(pokemon.height, pokemon.imageUrl)
+    
   });
 });
