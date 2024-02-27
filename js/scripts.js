@@ -21,14 +21,15 @@ const pokemonRepository = (function () {
   }
 
   function showModal(pokemon) {
-    console.log(pokemon);
+    
     let modalContainer = document.querySelector('#modal-container');
     modalContainer.innerHTML = '';
     let modal = document.createElement('div');
-    modal.classList.add('modal');
+    modal.classList.add('modal','fade');
 
     let closeButtonElement = document.createElement('button');
     closeButtonElement.classList.add('modal-close');
+    closeButtonElement.classList.add('btn-secondary');
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', () => hideModal());
 
@@ -38,6 +39,9 @@ const pokemonRepository = (function () {
 
     let contentElement = document.createElement('img');
     contentElement.src = pokemon.imageUrl;
+
+    let paragraphElement = document.createElement('p');
+    paragraphElement.innerText = 'My height is' + pokemon.height + 'meters.'
 
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
@@ -61,15 +65,19 @@ const pokemonRepository = (function () {
     });
     button.id = 'showModal';
     button.innerHTML = pokemon.name
-    button.classList.add('button');
+    button.classList.add('btn', 'btn-primary', 'text-center', 'button', 'button:hover', 'button:focus');
     listItem.appendChild(button);
+    listItem.classList.add('list-group-item');
+    listItem.classList.add('text-center');
+    listItem.classList.add('li');
+    //listItem.classList.add('col-md-4');
     htmlElement.appendChild(listItem);
 
   }
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      showModal(pokemon.height, pokemon.imageUrl);
+      showModal(pokemon);
     });
   }
 
