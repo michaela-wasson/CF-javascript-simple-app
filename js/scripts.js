@@ -21,9 +21,7 @@ const pokemonRepository = (function () {
   function showModal(pokemon) {
     let modalBody = document.querySelector('.modal-body');
     let modalHeader = document.querySelector('.modal-header');
-    
-    let modalTitle = document.querySelector('.modal-title')
-
+    let modalTitle = document.querySelector('.modal-title');
     let closeButtonElement = document.querySelector('.close'); 
 
     let titleElement = document.createElement('h1');
@@ -54,15 +52,19 @@ const pokemonRepository = (function () {
     button.innerHTML = pokemon.name
     button.classList.add('btn', 'btn-primary', 'btn-success', 'text-center', 'button', 'button:hover', 'button:focus');
     listItem.appendChild(button);
-    button.setAttribute('data-target', '#exampleModal', 'data-toggle', 'modal');
-    button.addEventListener('click', function () {
+    button.setAttribute('data-target', '#exampleModal')
+    button.setAttribute( 'data-toggle', 'modal');
+    button.addEventListener('click', function (){
       showDetails(pokemon)
-    }); //does this work? 
+    } );
+
     listItem.classList.add('list-group-item', 'text-center', 'li');
     //listItem.classList.add('col-md-4');
     htmlElement.appendChild(listItem);
 
   }
+
+
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
