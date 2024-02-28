@@ -21,8 +21,7 @@ const pokemonRepository = (function () {
   function showModal(pokemon) {
     let modalBody = document.querySelector('.modal-body');
     let modalHeader = document.querySelector('.modal-header');
-    modalBody.innerHTML = '';
-
+    
     let modalTitle = document.querySelector('.modal-title')
 
     let closeButtonElement = document.querySelector('.close'); 
@@ -42,6 +41,7 @@ const pokemonRepository = (function () {
     modalBody.appendChild(contentElement);
     modalBody.appendChild(paragraphElement);
 
+    modalBody.innerHTML = '';
   };
 
   //creates buttons to display pokemon data
@@ -54,14 +54,11 @@ const pokemonRepository = (function () {
     button.innerHTML = pokemon.name
     button.classList.add('btn', 'btn-primary', 'btn-success', 'text-center', 'button', 'button:hover', 'button:focus');
     listItem.appendChild(button);
-    button.setAttribute('data-target', '#exampleModal');
-    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#exampleModal', 'data-toggle', 'modal');
     button.addEventListener('click', function () {
       showDetails(pokemon)
     }); //does this work? 
-    listItem.classList.add('list-group-item');
-    listItem.classList.add('text-center');
-    listItem.classList.add('li');
+    listItem.classList.add('list-group-item', 'text-center', 'li');
     //listItem.classList.add('col-md-4');
     htmlElement.appendChild(listItem);
 

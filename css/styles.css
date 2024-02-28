@@ -82,7 +82,7 @@ p {
 /* id styles 
 -------------*/
 
-#modal-container{
+/*#modal-container{
     display: none;
 }
 
@@ -96,18 +96,15 @@ p {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     
-    /* to show it above other content */
-    z-index: 999; 
+    /* to show it above other content z-index: 999; 
     
-    /* to allow scrolling if the screen is not high enough*/
-    overflow: auto; 
+    /* to allow scrolling if the screen is not high enough* overflow: auto; 
     
-    /* this is used to center the modal */
-    display: grid;
+    /* this is used to center the modal display: grid;
     text-align: center;
   }
   
-  .modal {
+ .modal {
     margin: auto;
     display: inline-block;
     box-sizing: border-box;
