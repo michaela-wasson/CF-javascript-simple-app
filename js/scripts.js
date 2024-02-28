@@ -1,11 +1,9 @@
-//declares an IIFE to be used as data
-
 const pokemonRepository = (function () {
   let pokemonList = [];
 
-  let modalContainer = document.querySelector('#modal-container');
+  let modal= document.querySelector('.modal');
   let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-  console.log('top of the File', apiURL);
+  
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -18,21 +16,16 @@ const pokemonRepository = (function () {
   function hideModal() {
     let modalContainer = document.querySelector('#modal-container');
     modalContainer.style.display = 'none';
-  }
+  }// doesn't seem necessary anymore
 
   function showModal(pokemon) {
-    
-    let modalContainer = document.querySelector('#modal-container');
-    modalContainer.innerHTML = '';
-    let modal = document.createElement('div');
-    modal.classList.add('modal','fade');
+    let modalBody = document.querySelector('.modal-body');
+    let modalHeader = document.querySelector('.modal-header');
+    modalBody.innerHTML = '';
 
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.classList.add('btn-secondary');
-    closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', () => hideModal());
+    let modalTitle = document.querySelector('.modal-title')
 
+    let closeButtonElement = document.querySelector('.close'); 
 
     let titleElement = document.createElement('h1');
     titleElement.innerText = pokemon.name;
@@ -41,16 +34,13 @@ const pokemonRepository = (function () {
     contentElement.src = pokemon.imageUrl;
 
     let paragraphElement = document.createElement('p');
-    paragraphElement.innerText = 'My height is' + pokemon.height + 'meters.'
+    paragraphElement.innerHTML = 'My height is' + pokemon.height + 'meters.' 
 
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modalContainer.appendChild(modal);
-
-    // modalContainer.classList.add('is-visible');
-    modalContainer.style.display = 'block'
-
+    modalHeader.appendChild(modalTitle);
+    modalHeader.appendChild(closeButtonElement);
+    modalBody.appendChild(titleElement);
+    modalBody.appendChild(contentElement);
+    modalBody.appendChild(paragraphElement);
 
   };
 
@@ -60,13 +50,15 @@ const pokemonRepository = (function () {
     let htmlElement = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
     let button = document.createElement('button')
+
+    button.innerHTML = pokemon.name
+    button.classList.add('btn', 'btn-primary', 'btn-success', 'text-center', 'button', 'button:hover', 'button:focus');
+    listItem.appendChild(button);
+    button.setAttribute('data-target', '#exampleModal');
+    button.setAttribute('data-toggle', 'modal');
     button.addEventListener('click', function () {
       showDetails(pokemon)
-    });
-    button.id = 'showModal';
-    button.innerHTML = pokemon.name
-    button.classList.add('btn', 'btn-primary', 'text-center', 'button', 'button:hover', 'button:focus');
-    listItem.appendChild(button);
+    }); //does this work? 
     listItem.classList.add('list-group-item');
     listItem.classList.add('text-center');
     listItem.classList.add('li');
@@ -113,12 +105,7 @@ const pokemonRepository = (function () {
     });
   }
 
-  modalContainer.addEventListener('click', (e) => {
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  })
+
 
   window.addEventListener('keydown', (e) => {
     let modalContainer = document.querySelector('#modal-container');
@@ -135,11 +122,6 @@ const pokemonRepository = (function () {
   };
 
 })();
-
-
-
-
-
 
 
 
