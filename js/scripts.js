@@ -1,7 +1,10 @@
+//IIFE for functions to load and process data
 const pokemonRepository = (function () {
   let pokemonList = [];
 
   let modal= document.querySelector('.modal');
+
+  //data from API
   let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   
 
@@ -13,25 +16,22 @@ const pokemonRepository = (function () {
     return pokemonList;
   }
 
-  function hideModal() {
-    let modalContainer = document.querySelector('#modal-container');
-    modalContainer.style.display = 'none';
-  }// doesn't seem necessary anymore
-
+//function to load modal information and show it 
   function showModal(pokemon) {
     let modalBody = document.querySelector('.modal-body');
     let modalHeader = document.querySelector('.modal-header');
+    modalBody.innerHTML = '';
     let modalTitle = document.querySelector('.modal-title');
     let closeButtonElement = document.querySelector('.close'); 
 
-    let titleElement = document.createElement('h1');
+    let titleElement = document.createElement('h2');
     titleElement.innerText = pokemon.name;
 
     let contentElement = document.createElement('img');
     contentElement.src = pokemon.imageUrl;
 
     let paragraphElement = document.createElement('p');
-    paragraphElement.innerHTML = 'My height is' + pokemon.height + 'meters.' 
+    paragraphElement.innerText = 'Hi! I am ' + pokemon.height + ' meters tall' ;
 
     modalHeader.appendChild(modalTitle);
     modalHeader.appendChild(closeButtonElement);
@@ -39,7 +39,7 @@ const pokemonRepository = (function () {
     modalBody.appendChild(contentElement);
     modalBody.appendChild(paragraphElement);
 
-    modalBody.innerHTML = '';
+    
   };
 
   //creates buttons to display pokemon data
@@ -59,19 +59,19 @@ const pokemonRepository = (function () {
     } );
 
     listItem.classList.add('list-group-item', 'text-center', 'li');
-    //listItem.classList.add('col-md-4');
     htmlElement.appendChild(listItem);
 
   }
 
 
-
+//function that's triggered when a button is clicked
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       showModal(pokemon);
     });
   }
 
+//promise function to fetch API
   function loadList() {
     let url = apiURL;
 
@@ -90,6 +90,8 @@ const pokemonRepository = (function () {
     })
   }
 
+//promise function to unfurl details
+
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -104,14 +106,6 @@ const pokemonRepository = (function () {
     });
   }
 
-
-
-  window.addEventListener('keydown', (e) => {
-    let modalContainer = document.querySelector('#modal-container');
-    if (e.key === 'Escape' && modalContainer.style.display === 'block') {
-      hideModal();
-    }
-  })
 
 
   return {
