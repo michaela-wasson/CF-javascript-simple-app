@@ -14,3 +14,6 @@ touch interactions.
 review how to do this in Intro to Frontend Development's Exercise 10: Code Quality, Testing, &
 Web Hosting).
 ● The app must work in Chrome, Firefox, Safari, Edge, and Internet Explorer 11.
+
+Technology used:
+Bootstrap
